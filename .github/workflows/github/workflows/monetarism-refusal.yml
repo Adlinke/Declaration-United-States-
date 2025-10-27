@@ -1,0 +1,27 @@
+name: Monetarism Refusal Enforcement
+
+on:
+  push:
+    paths:
+      - 'Monetarism-Refusal-Declaration.md'
+
+jobs:
+  enforce-monetarism-refusal:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log enforcement timestamp
+        run: echo "Monetarism refusal enforced at $(date)" >> enforcement.log
+
+      - name: Affirm authorship
+        run: echo "Author: Adila Linke" >> enforcement.log
+
+      - name: Archive declaration
+        run: |
+          mkdir -p archive
+          cp Monetarism-Refusal-Declaration.md archive/Monetarism-Refusal-$(date +%Y%m%d).md
+
+      - name: Confirm license
+        run: echo "License: AdLinke-pachte-1" >> enforcement.log
